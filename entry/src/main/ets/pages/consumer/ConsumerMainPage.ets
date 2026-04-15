@@ -15,6 +15,10 @@ export struct ConsumerMainPage {
   @State isLoggedIn: boolean = false;
   @State userName: string = '游客';
   @State userPhone: string = '';
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
 
   private readonly tabItems: TabItem[] = [
     { key: 'home', label: '首页', icon: '🏠' },
@@ -103,7 +107,8 @@ export struct ConsumerMainPage {
         .padding({ top: 8 })
       }
       .width('100%')
-      .height(64)
+      .height(64 + this.getUIContext().px2vp(this.bottomRectHeight))
+      .padding({ bottom: this.getUIContext().px2vp(this.bottomRectHeight) })
       .backgroundColor('#FFFFFF')
     }
     .width('100%')
@@ -143,8 +148,8 @@ export struct ConsumerMainPage {
           })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {
@@ -174,6 +179,7 @@ export struct ConsumerMainPage {
           .borderRadius(12)
           .justifyContent(FlexAlign.Center)
           .margin({ left: 16, right: 16 })
+          .padding(10)
 
           // 分类入口
           Row({ space: 8 }) {
@@ -348,8 +354,8 @@ export struct ConsumerMainPage {
           })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {

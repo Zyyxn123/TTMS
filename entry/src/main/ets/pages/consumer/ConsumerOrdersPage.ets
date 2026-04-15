@@ -15,6 +15,10 @@ export struct ConsumerOrdersPage {
   @State isLoading: boolean = true;
   @State showCancelDialog: boolean = false;
   @State selectedOrder: Order | null = null;
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
 
   private readonly tabs: OrderTab[] = [
     { key: 'all', label: '全部' },
@@ -121,8 +125,8 @@ export struct ConsumerOrdersPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (!consumerUserService.isLoggedIn()) {
@@ -208,6 +212,7 @@ export struct ConsumerOrdersPage {
             .width('100%')
             .padding({ bottom: 20 })
           }
+          .alignSelf(ItemAlign.Start)
           .width('100%')
           .layoutWeight(1)
           .scrollBar(BarState.Off)

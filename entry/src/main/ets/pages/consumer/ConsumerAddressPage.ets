@@ -7,6 +7,10 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 export struct ConsumerAddressPage {
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   @State addresses: Address[] = [
     {
       id: '1',
@@ -112,8 +116,8 @@ export struct ConsumerAddressPage {
           .onClick(() => { this.showAddDialog = true; })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (this.addresses.length === 0) {

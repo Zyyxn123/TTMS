@@ -15,12 +15,10 @@ export struct ConsumerRegisterPage {
   @State isLoading: boolean = false;
   @State countdown: number = 0;
   @State agreedToTerms: boolean = false;
-
   @State phoneError: string = '';
   @State codeError: string = '';
   @State passwordError: string = '';
   @State confirmError: string = '';
-
   private countdownTimer: number = -1;
 
   aboutToDisappear(): void {
@@ -127,34 +125,34 @@ export struct ConsumerRegisterPage {
 
   build() {
     Column() {
-      // 顶部导航
-      Row() {
-        Row() {
-          Text('<')
-            .fontSize(24)
-            .fontColor('#1A1A1A')
-        }
-        .width(40)
-        .height(40)
-        .backgroundColor('#F5F5F5')
-        .borderRadius(20)
-        .justifyContent(FlexAlign.Center)
-        .onClick(() => { router.back(); })
-
-        Text('注册账号')
-          .fontSize(18)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#1A1A1A')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-
-        Text('')
-          .width(40)
-      }
-      .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
-      .backgroundColor('#FFFFFF')
+      // // 顶部导航
+      // Row() {
+      //   Row() {
+      //     Text('<')
+      //       .fontSize(24)
+      //       .fontColor('#1A1A1A')
+      //   }
+      //   .width(40)
+      //   .height(40)
+      //   .backgroundColor('#F5F5F5')
+      //   .borderRadius(20)
+      //   .justifyContent(FlexAlign.Center)
+      //   .onClick(() => { router.back(); })
+      //
+      //   Text('注册账号')
+      //     .fontSize(18)
+      //     .fontWeight(FontWeight.Bold)
+      //     .fontColor('#1A1A1A')
+      //     .layoutWeight(1)
+      //     .textAlign(TextAlign.Center)
+      //
+      //   Text('')
+      //     .width(40)
+      // }
+      // .width('100%')
+      // .height(56)
+      // .padding({ left: 16, right: 16 })
+      // .backgroundColor('#FFFFFF')
 
       Scroll() {
         Column({ space: 16 }) {
@@ -188,7 +186,9 @@ export struct ConsumerRegisterPage {
                 .type(InputType.PhoneNumber)
                 .onChange((value: string) => {
                   this.phone = value;
-                  if (this.phoneError !== '') this.phoneError = '';
+                  if (this.phoneError !== '') {
+                    this.phoneError = '';
+                  }
                 })
 
               Button(this.countdown > 0 ? `${this.countdown}s` : '获取验证码')
@@ -201,7 +201,9 @@ export struct ConsumerRegisterPage {
                 .padding({ left: 12, right: 12 })
                 .enabled(this.countdown === 0)
                 .opacity(this.countdown === 0 ? 1 : 0.6)
-                .onClick(() => { this.handleSendCode(); })
+                .onClick(() => {
+                  this.handleSendCode();
+                })
             }
             .backgroundColor('#FAFAFA')
             .borderRadius(10)
@@ -212,6 +214,11 @@ export struct ConsumerRegisterPage {
                 .fontSize(12)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+                .height(10)
+            } else {
+              Row()
+                .height(10)
+                .width('100%')
             }
           }
           .width('100%')
@@ -235,7 +242,9 @@ export struct ConsumerRegisterPage {
               .maxLength(6)
               .onChange((value: string) => {
                 this.verifyCode = value;
-                if (this.codeError !== '') this.codeError = '';
+                if (this.codeError !== '') {
+                  this.codeError = '';
+                }
               })
 
             if (this.codeError !== '') {
@@ -243,6 +252,11 @@ export struct ConsumerRegisterPage {
                 .fontSize(12)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+                .height(10)
+            } else {
+              Row()
+                .height(10)
+                .width('100%')
             }
           }
           .width('100%')
@@ -265,7 +279,9 @@ export struct ConsumerRegisterPage {
               .type(InputType.Password)
               .onChange((value: string) => {
                 this.password = value;
-                if (this.passwordError !== '') this.passwordError = '';
+                if (this.passwordError !== '') {
+                  this.passwordError = '';
+                }
               })
 
             if (this.passwordError !== '') {
@@ -273,6 +289,11 @@ export struct ConsumerRegisterPage {
                 .fontSize(12)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+                .height(10)
+            } else {
+              Row()
+                .height(10)
+                .width('100%')
             }
           }
           .width('100%')
@@ -295,7 +316,9 @@ export struct ConsumerRegisterPage {
               .type(InputType.Password)
               .onChange((value: string) => {
                 this.confirmPassword = value;
-                if (this.confirmError !== '') this.confirmError = '';
+                if (this.confirmError !== '') {
+                  this.confirmError = '';
+                }
               })
 
             if (this.confirmError !== '') {
@@ -303,6 +326,11 @@ export struct ConsumerRegisterPage {
                 .fontSize(12)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+                .height(10)
+            } else {
+              Row()
+                .height(10)
+                .width('100%')
             }
           }
           .width('100%')
@@ -312,7 +340,9 @@ export struct ConsumerRegisterPage {
             Checkbox()
               .select(this.agreedToTerms)
               .selectedColor('#FF9800')
-              .onChange((value: boolean) => { this.agreedToTerms = value; })
+              .onChange((value: boolean) => {
+                this.agreedToTerms = value;
+              })
             Text('我已阅读并同意')
               .fontSize(12)
               .fontColor('#666666')
@@ -348,7 +378,9 @@ export struct ConsumerRegisterPage {
             .enabled(!this.isLoading)
             .opacity(this.isLoading ? 0.7 : 1)
             .margin({ top: 20 })
-            .onClick(() => { this.handleRegister(); })
+            .onClick(() => {
+              this.handleRegister();
+            })
 
           if (this.isLoading) {
             Row({ space: 8 }) {
@@ -361,6 +393,11 @@ export struct ConsumerRegisterPage {
                 .fontColor('#FFFFFF')
             }
             .margin({ top: 12 })
+            .height(25)
+          } else {
+            Row()
+              .height(25).margin({ top: 12 })
+              .width('100%')
           }
 
           // 已有账号
@@ -372,7 +409,9 @@ export struct ConsumerRegisterPage {
               .fontSize(14)
               .fontColor('#FF9800')
               .fontWeight(FontWeight.Bold)
-              .onClick(() => { router.back(); })
+              .onClick(() => {
+                router.back();
+              })
           }
           .margin({ top: 24, bottom: 40 })
         }

@@ -17,6 +17,10 @@ export struct ConsumerOrderConfirmPage {
   @State totalAmount: number = 0;
   @State isLoading: boolean = true;
   @State showConfirmDialog: boolean = false;
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
 
   aboutToAppear(): void {
     const params = router.getParams() as Record<string, string>;
@@ -96,8 +100,8 @@ export struct ConsumerOrderConfirmPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (this.isLoading || !this.show) {

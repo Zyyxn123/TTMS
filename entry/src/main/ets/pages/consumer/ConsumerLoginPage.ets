@@ -114,37 +114,37 @@ export struct ConsumerLoginPage {
 
   build() {
     Column() {
-      // 顶部导航
-      Row() {
-        Row() {
-          Text('<')
-            .fontSize(24)
-            .fontColor('#1A1A1A')
-        }
-        .width(40)
-        .height(40)
-        .backgroundColor('#F5F5F5')
-        .borderRadius(20)
-        .justifyContent(FlexAlign.Center)
-        .onClick(() => { router.back(); })
-
-        Text('用户登录')
-          .fontSize(18)
-          .fontWeight(FontWeight.Bold)
-          .fontColor('#1A1A1A')
-          .layoutWeight(1)
-          .textAlign(TextAlign.Center)
-
-        Text('')
-          .width(40)
-      }
-      .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
-      .backgroundColor('#FFFFFF')
+      // // 顶部导航
+      // Row() {
+      //   Row() {
+      //     Text('<')
+      //       .fontSize(24)
+      //       .fontColor('#1A1A1A')
+      //   }
+      //   .width(40)
+      //   .height(40)
+      //   .backgroundColor('#F5F5F5')
+      //   .borderRadius(20)
+      //   .justifyContent(FlexAlign.Center)
+      //   .onClick(() => { router.back(); })
+      //
+      //   Text('用户登录')
+      //     .fontSize(18)
+      //     .fontWeight(FontWeight.Bold)
+      //     .fontColor('#1A1A1A')
+      //     .layoutWeight(1)
+      //     .textAlign(TextAlign.Center)
+      //
+      //   Text('')
+      //     .width(40)
+      // }
+      // .width('100%')
+      // .height(56)
+      // .padding({ left: 16, right: 16 })
+      // .backgroundColor('#FFFFFF')
 
       Scroll() {
-        Column({ space: 20 }) {
+        Column({ space: 10 }) {
           // Logo区域
           Column({ space: 8 }) {
             Text('🎫')
@@ -222,9 +222,13 @@ export struct ConsumerLoginPage {
 
             if (this.phoneError !== '') {
               Text(this.phoneError)
-                .fontSize(12)
+                .fontSize(12)   .height(6)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+            } else {
+              Row()
+                .height(6)
+                .width('100%')
             }
           }
           .width('100%')
@@ -269,9 +273,13 @@ export struct ConsumerLoginPage {
 
             if (this.passwordError !== '') {
               Text(this.passwordError)
-                .fontSize(12)
+                .fontSize(12) .height(6)
                 .fontColor('#F44336')
                 .alignSelf(ItemAlign.Start)
+            } else {
+              Row()
+                .height(6)
+                .width('100%')
             }
           }
           .width('100%')
@@ -323,6 +331,12 @@ export struct ConsumerLoginPage {
                 .fontColor('#FF9800')
             }
             .margin({ top: 12 })
+            .height(15)
+          } else {
+            Row()
+              .margin({ top: 12 })
+              .height(15)
+              .width('100%')
           }
 
           // 第三方登录

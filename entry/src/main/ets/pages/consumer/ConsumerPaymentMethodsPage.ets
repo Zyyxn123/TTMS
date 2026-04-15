@@ -7,6 +7,10 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 export struct ConsumerPaymentMethodsPage {
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   @State paymentMethods: PaymentMethod[] = [
     {
       id: '1',
@@ -30,7 +34,7 @@ export struct ConsumerPaymentMethodsPage {
       cardNo: '**** **** **** 8888',
       isDefault: false
     }
-  ];
+  ]
 
   private handleSetDefault(id: string): void {
     const updatedMethods: PaymentMethod[] = [];
@@ -97,8 +101,8 @@ export struct ConsumerPaymentMethodsPage {
           .onClick(() => { this.handleAdd(); })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {

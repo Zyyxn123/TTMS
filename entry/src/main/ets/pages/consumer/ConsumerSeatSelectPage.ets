@@ -14,6 +14,10 @@ export struct ConsumerSeatSelectPage {
   @State selectedSeats: SeatSelection[] = [];
   @State totalAmount: number = 0;
   @State isLoading: boolean = true;
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
 
   aboutToAppear(): void {
     const params = router.getParams() as Record<string, string>;
@@ -70,18 +74,24 @@ export struct ConsumerSeatSelectPage {
   // 获取座位颜色
   private getSeatColor(seat: Seat): string {
     switch (seat.status) {
-      case SeatStatus.SOLD: return '#E0E0E0';
-      case SeatStatus.SELECTED: return '#FF9800';
-      default: return '#FFFFFF';
+      case SeatStatus.SOLD:
+        return '#E0E0E0';
+      case SeatStatus.SELECTED:
+        return '#FF9800';
+      default:
+        return '#FFFFFF';
     }
   }
 
   // 获取座位边框颜色
   private getSeatBorderColor(seat: Seat): string {
     switch (seat.status) {
-      case SeatStatus.SOLD: return '#E0E0E0';
-      case SeatStatus.SELECTED: return '#FF9800';
-      default: return '#CCCCCC';
+      case SeatStatus.SOLD:
+        return '#E0E0E0';
+      case SeatStatus.SELECTED:
+        return '#FF9800';
+      default:
+        return '#CCCCCC';
     }
   }
 
@@ -116,7 +126,9 @@ export struct ConsumerSeatSelectPage {
         .backgroundColor('#FFFFFF80')
         .borderRadius(20)
         .justifyContent(FlexAlign.Center)
-        .onClick(() => { router.back(); })
+        .onClick(() => {
+          router.back();
+        })
 
         Text('选择座位')
           .fontSize(18)
@@ -129,8 +141,8 @@ export struct ConsumerSeatSelectPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (this.isLoading || !this.show) {
@@ -192,6 +204,7 @@ export struct ConsumerSeatSelectPage {
                 .fontSize(12)
                 .fontColor('#9E9E9E')
             }
+
             Row({ space: 4 }) {
               Text('')
                 .width(16)
@@ -202,6 +215,7 @@ export struct ConsumerSeatSelectPage {
                 .fontSize(12)
                 .fontColor('#9E9E9E')
             }
+
             Row({ space: 4 }) {
               Text('')
                 .width(16)
@@ -259,19 +273,20 @@ export struct ConsumerSeatSelectPage {
                         radius: 4
                       })
                       .borderRadius(4)
-                      .onClick(() => { this.toggleSeat(seat); })
+                      .onClick(() => {
+                        this.toggleSeat(seat);
+                      })
                   })
                 }
-                .width('100%')
                 .justifyContent(FlexAlign.Center)
                 .margin({ bottom: 4 })
               })
             }
-            .width('100%')
-            .padding({ top: 8, bottom: 20 })
+            .padding({ top: 8, bottom: 20, right: 6 })
           }
+          .scrollable(ScrollDirection.Horizontal)
+          .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
           .width('100%')
-          .layoutWeight(1)
           .scrollBar(BarState.Off)
 
           // 已选座位信息
@@ -287,7 +302,12 @@ export struct ConsumerSeatSelectPage {
                     .fontColor('#FFFFFF')
                     .backgroundColor('#FF9800')
                     .borderRadius(4)
-                    .padding({ left: 8, right: 8, top: 2, bottom: 2 })
+                    .padding({
+                      left: 8,
+                      right: 8,
+                      top: 2,
+                      bottom: 2
+                    })
                     .margin({ left: 4 })
                 })
               }
@@ -337,20 +357,29 @@ export struct ConsumerSeatSelectPage {
                 .height(44)
                 .layoutWeight(1)
                 .enabled(this.selectedSeats.length > 0)
-                .onClick(() => { this.handleConfirm(); })
+                .onClick(() => {
+                  this.handleConfirm();
+                })
             }
             .width('100%')
-            .padding({ left: 16, right: 16, top: 12, bottom: 12 })
+            .padding({
+              left: 16,
+              right: 16,
+              top: 12,
+              bottom: 12
+            })
           }
           .width('100%')
           .backgroundColor('#FFFFFF')
         }
         .width('100%')
         .height('100%')
+        .justifyContent(FlexAlign.Start)
       }
     }
     .width('100%')
     .height('100%')
+    .justifyContent(FlexAlign.Start)
     .backgroundColor('#F5F5F5')
   }
 }
