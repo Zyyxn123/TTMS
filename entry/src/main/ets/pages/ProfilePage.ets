@@ -231,13 +231,13 @@ export struct ProfilePage {
             .fontColor('#666666')
             .margin({ bottom: 24 })
 
-          Row() {
+          Row({ space: 5 }) {
             Button('取消')
               .fontSize(16)
               .fontColor('#666666')
               .backgroundColor('#F5F5F5')
               .borderRadius(8)
-              .layoutWeight(1)
+              .width('45%')
               .onClick(() => {
                 this.showLogoutDialog = false;
               })
@@ -251,18 +251,20 @@ export struct ProfilePage {
               .fontColor('#FFFFFF')
               .backgroundColor('#1E88E5')
               .borderRadius(8)
-              .layoutWeight(1)
+              .width('45%')
               .onClick(() => {
                 this.confirmLogout();
               })
           }
           .width('100%')
           .height(48)
+          .padding({ left: 10, right: 10 })
         }
         .width('80%')
         .backgroundColor('#FFFFFF')
         .borderRadius(12)
         .position({ x: '10%', y: '35%' })
+        .alignItems(HorizontalAlign.Center)
       }
     }
     .width('100%')

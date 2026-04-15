@@ -15,7 +15,10 @@ export struct TicketExceptionPage {
   @State showHandleDialog: boolean = false;
   @State handleResult: string = '';
   @State handleAction: string = '';
-
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   private readonly filterItems: ExceptionFilterItem[] = [
     { label: '全部', value: 'ALL' },
     { label: '待处理', value: ExceptionStatus.PENDING },
@@ -147,8 +150,8 @@ export struct TicketExceptionPage {
           .onClick(() => { this.showFilterSheet = true; })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       // 筛选信息栏

@@ -70,7 +70,7 @@ export struct LoginPage {
           AppStorage.delete(this.STORAGE_KEY_PASSWORD);
         }
         promptAction.showToast({ message: `欢迎，${user?.name}`, duration: 2000 });
-        router.replaceUrl({ url: 'pages/MainTabPage' });
+        router.replace({ url: 'pages/MainTabPage' });
       } else {
         this.passwordError = '账号或密码错误';
       }
@@ -91,7 +91,7 @@ export struct LoginPage {
         Column({ space: 0 }) {
           // ===== Logo 区域 =====
           Column({ space: 8 }) {
-            Row() {
+            Row({ space: 6}) {
               Text('TT')
                 .fontSize(40)
                 .fontWeight(FontWeight.Bold)
@@ -108,11 +108,11 @@ export struct LoginPage {
               }
             }
 
-            Text('TTMS')
-              .fontSize(32)
-              .fontWeight(FontWeight.Bold)
-              .fontColor('#1E88E5')
-              .margin({ top: 16 })
+            // Text('TTMS')
+            //   .fontSize(32)
+            //   .fontWeight(FontWeight.Bold)
+            //   .fontColor('#1E88E5')
+            //   .margin({ top: 16 })
 
             Text('票务管理系统')
               .fontSize(14)
@@ -183,10 +183,14 @@ export struct LoginPage {
 
               if (this.accountError !== '') {
                 Text(this.accountError)
-                  .fontSize(12)
+                  .fontSize(12)    .height(10)
                   .fontColor('#F44336')
                   .alignSelf(ItemAlign.Start)
                   .margin({ left: 4 })
+              } else {
+                Row() {}
+                .width('100%')
+                .height(10)
               }
             }
 
@@ -242,9 +246,14 @@ export struct LoginPage {
               if (this.passwordError !== '') {
                 Text(this.passwordError)
                   .fontSize(12)
+                  .height(10)
                   .fontColor('#F44336')
                   .alignSelf(ItemAlign.Start)
                   .margin({ left: 4 })
+              } else {
+                Row() {}
+                .width('100%')
+                .height(10)
               }
             }
 
@@ -298,6 +307,12 @@ export struct LoginPage {
                     .fontSize(14)
                     .fontColor('#1E88E5')
                 }
+                .height(25)
+                .margin({ top: 12 })
+              } else {
+                Row() {}
+                .width('100%')
+                .height(25)
                 .margin({ top: 12 })
               }
             }

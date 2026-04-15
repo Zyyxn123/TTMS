@@ -6,6 +6,14 @@ import router from '@ohos.router';
 @Entry
 @Component
 export struct Index {
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
+
+        // .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+        // .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
+
   build() {
     Column() {
       // Logo区域
@@ -73,7 +81,7 @@ export struct Index {
               Text('🎫')
                 .fontSize(32)
               Column() {
-                Text('消费者登录')
+                Text('用户端登录')
                   .fontSize(17)
                   .fontWeight(FontWeight.Bold)
                   .fontColor('#FFFFFF')
@@ -125,5 +133,9 @@ export struct Index {
     .width('100%')
     .height('100%')
     .backgroundColor('#FFFFFF')
+    .padding({
+      top: this.getUIContext().px2vp(this.topRectHeight),
+      bottom: this.getUIContext().px2vp(this.bottomRectHeight)
+    })
   }
 }

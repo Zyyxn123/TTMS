@@ -22,6 +22,27 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
+    // 1. 设置窗口全屏
+    let isLayoutFullScreen = true;
+    windowClass.setWindowLayoutFullScreen(isLayoutFullScreen).then(() => {
+      console.info('Succeeded in setting the window layout to full-screen mode.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the window layout to full-screen mode. Code is ${err.code}, message is ${err.message}`);
+    });
+    // 进行后续步骤2-3中的操作
+    // EntryAbility.ets
+    // 2. 获取布局避让遮挡的区域
+    let type = window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR; // 此处以导航条避让为例
+    let avoidArea = windowClass.getWindowAvoidArea(type);
+    let bottomRectHeight = avoidArea.bottomRect.height; // 获取到导航区域的高度
+    AppStorage.setOrCreate('bottomRectHeight', bottomRectHeight);
+
+    type = window.AvoidAreaType.TYPE_SYSTEM; // 以状态栏避让为例
+    avoidArea = windowClass.getWindowAvoidArea(type);
+    let topRectHeight = avoidArea.topRect.height; // 获取状态栏区域高度
+    AppStorage.setOrCreate('topRectHeight', topRectHeight);
+
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
         hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));

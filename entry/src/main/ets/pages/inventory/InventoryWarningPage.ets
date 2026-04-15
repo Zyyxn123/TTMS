@@ -7,6 +7,10 @@ import { Inventory, WarningLevel } from '../../model/DataModel';
 export struct InventoryWarningPage {
   @State warningList: Inventory[] = [];
   @State isLoading: boolean = false;
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
 
   aboutToAppear(): void {
     this.loadData();
@@ -53,8 +57,8 @@ export struct InventoryWarningPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (this.isLoading) {
@@ -184,14 +188,19 @@ export struct InventoryWarningPage {
             })
           }
           .padding(16)
+          .justifyContent(FlexAlign.Start)
+          .layoutWeight(1)
         }
+        .alignSelf(ItemAlign.Start)
         .width('100%')
         .layoutWeight(1)
         .scrollBar(BarState.Off)
+        .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true})
       }
     }
     .width('100%')
     .height('100%')
     .backgroundColor('#F5F5F5')
+    .justifyContent(FlexAlign.Start)
   }
 }

@@ -388,7 +388,7 @@ export struct StatsHomePage {
         .width('100%')
         .backgroundColor('#FFFFFF')
         .borderRadius({ topLeft: 20, topRight: 20 })
-        .position({ y: '50%' })
+        .position({ y: '64%' })
       }
     }
     .width('100%')

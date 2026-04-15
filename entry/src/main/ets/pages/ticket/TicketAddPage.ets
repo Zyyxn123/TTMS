@@ -22,7 +22,10 @@ export struct TicketAddPage {
   @State saleEndTime: string = '';
   @State remark: string = '';
   @State selectedGenre: string = '演唱会';
-
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   @State showNameError: string = '';
   @State venueError: string = '';
   @State priceError: string = '';
@@ -203,8 +206,8 @@ export struct TicketAddPage {
           })
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {

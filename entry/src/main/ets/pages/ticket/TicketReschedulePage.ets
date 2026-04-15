@@ -16,7 +16,10 @@ export struct TicketReschedulePage {
   @State newShowTime: string = '';
   @State rescheduleFee: string = '0';
   @State isSubmitting: boolean = false;
-
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   aboutToAppear(): void {
     const params: Record<string, string> = router.getParams() as Record<string, string> ?? {};
     this.ticketId = params['ticketId'] ?? '';
@@ -77,8 +80,8 @@ export struct TicketReschedulePage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {

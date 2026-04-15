@@ -18,7 +18,10 @@ interface SettingsMenuItemType {
 export struct SettingsPage {
   @State isOperator: boolean = false;
   @State showAboutDialog: boolean = false;
-
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   aboutToAppear(): void {
     const user = UserService.getCurrentUser();
     if (user === null || user.role !== AdminRole.OPERATOR_ADMIN) {
@@ -94,8 +97,8 @@ export struct SettingsPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       if (this.isOperator) {
@@ -317,7 +320,7 @@ export struct SettingsPage {
             .borderRadius(10)
             .height(44)
             .width('80%')
-            .margin({ top: 20 })
+            .margin({ top: 15, bottom: 5 })
             .onClick(() => { this.showAboutDialog = false; })
         }
         .width('75%')

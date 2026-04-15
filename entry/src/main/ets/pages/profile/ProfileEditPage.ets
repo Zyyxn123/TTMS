@@ -11,7 +11,10 @@ export struct ProfileEditPage {
   @State phone: string = '';
   @State email: string = '';
   @State isSubmitting: boolean = false;
-
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   aboutToAppear(): void {
     this.user = UserService.getCurrentUser();
     if (this.user !== null) {
@@ -56,8 +59,8 @@ export struct ProfileEditPage {
           .width(40)
       }
       .width('100%')
-      .height(56)
-      .padding({ left: 16, right: 16 })
+      .height(56 + this.getUIContext().px2vp(this.topRectHeight))
+      .padding({ left: 16, right: 16, top: this.getUIContext().px2vp(this.topRectHeight) })
       .backgroundColor('#FFFFFF')
 
       Scroll() {

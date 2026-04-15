@@ -25,6 +25,8 @@ struct OrdersPage {
   @State filteredOrders: Order[] = [];
   @State selectedTab: string = 'all';
   @State isLoading: boolean = true;
+  @StorageProp('bottomRectHeight') bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight') topRectHeight: number = 0;
   @State counts: Counts = {
     all: 0,
     pending: 0,
@@ -221,5 +223,9 @@ struct OrdersPage {
     .width('100%')
     .height('100%')
     .backgroundColor('#F5F5F5')
+    .padding({
+      top: this.getUIContext().px2vp(this.topRectHeight),
+      bottom: this.getUIContext().px2vp(this.bottomRectHeight)
+    })
   }
 }

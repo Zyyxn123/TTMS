@@ -10,6 +10,11 @@ import UserService from '../../model/UserService';
 export struct TicketDetailPage {
   @State ticket: Ticket | null = null;
   @State ticketId: string = '';
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
+
 
   aboutToAppear(): void {
     const params: Record<string, string> = router.getParams() as Record<string, string> ?? {};
@@ -287,6 +292,10 @@ export struct TicketDetailPage {
     .width('100%')
     .height('100%')
     .backgroundColor('#F5F5F5')
+    .padding({
+      top: this.getUIContext().px2vp(this.topRectHeight),
+      bottom: this.getUIContext().px2vp(this.bottomRectHeight)
+    })
   }
 
   @Builder

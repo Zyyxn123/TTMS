@@ -28,6 +28,10 @@ struct PaymentPage {
   @State selectedPayment: string = 'alipay';
   @State isPaying: boolean = false;
   @State countDown: number = 15 * 60;
+  @StorageProp('bottomRectHeight')
+  bottomRectHeight: number = 0;
+  @StorageProp('topRectHeight')
+  topRectHeight: number = 0;
   private timer: number = -1;
 
   aboutToAppear() {
@@ -139,6 +143,10 @@ struct PaymentPage {
       })
       .backgroundColor(Color.White)
     }
+    .padding({
+      top: this.getUIContext().px2vp(this.topRectHeight),
+      bottom: this.getUIContext().px2vp(this.bottomRectHeight)
+    })
   }
 
   @Builder
