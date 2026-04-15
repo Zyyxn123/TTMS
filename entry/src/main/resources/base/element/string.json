@@ -1,0 +1,352 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "TTMS票务管理系统"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "票务管理系统主入口"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "TTMS"
+    },
+    {
+      "name": "app_name",
+      "value": "TTMS票务"
+    },
+    {
+      "name": "login_title",
+      "value": "TTMS票务管理系统"
+    },
+    {
+      "name": "login_account_hint",
+      "value": "请输入账号"
+    },
+    {
+      "name": "login_password_hint",
+      "value": "请输入密码"
+    },
+    {
+      "name": "login_btn",
+      "value": "登录"
+    },
+    {
+      "name": "login_remember",
+      "value": "记住密码"
+    },
+    {
+      "name": "login_forget",
+      "value": "忘记密码"
+    },
+    {
+      "name": "login_error_empty",
+      "value": "请输入账号和密码"
+    },
+    {
+      "name": "login_error_failed",
+      "value": "账号或密码错误"
+    },
+    {
+      "name": "admin_home_title",
+      "value": "TTMS票务管理"
+    },
+    {
+      "name": "tab_ticket",
+      "value": "票务管理"
+    },
+    {
+      "name": "tab_inventory",
+      "value": "库存管理"
+    },
+    {
+      "name": "tab_stats",
+      "value": "数据统计"
+    },
+    {
+      "name": "tab_profile",
+      "value": "我的"
+    },
+    {
+      "name": "today_sales",
+      "value": "今日销量"
+    },
+    {
+      "name": "today_revenue",
+      "value": "今日营收"
+    },
+    {
+      "name": "current_stock",
+      "value": "当前库存"
+    },
+    {
+      "name": "ticket_entry",
+      "value": "票务录入"
+    },
+    {
+      "name": "exception_handle",
+      "value": "异常处理"
+    },
+    {
+      "name": "inventory_adjust",
+      "value": "库存调整"
+    },
+    {
+      "name": "data_view",
+      "value": "数据查看"
+    },
+    {
+      "name": "profile_title",
+      "value": "我的"
+    },
+    {
+      "name": "profile_edit",
+      "value": "个人信息编辑"
+    },
+    {
+      "name": "operation_log",
+      "value": "操作日志"
+    },
+    {
+      "name": "password_change",
+      "value": "修改密码"
+    },
+    {
+      "name": "help_center",
+      "value": "帮助中心"
+    },
+    {
+      "name": "logout",
+      "value": "退出登录"
+    },
+    {
+      "name": "logout_confirm",
+      "value": "确定要退出登录吗？"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "home_title",
+      "value": "首页"
+    },
+    {
+      "name": "order_title",
+      "value": "订单"
+    },
+    {
+      "name": "search_hint",
+      "value": "搜索演出、场馆、演员..."
+    },
+    {
+      "name": "hot_shows",
+      "value": "热门演出"
+    },
+    {
+      "name": "upcoming_shows",
+      "value": "即将开售"
+    },
+    {
+      "name": "all_shows",
+      "value": "全部演出"
+    },
+    {
+      "name": "show_detail",
+      "value": "演出详情"
+    },
+    {
+      "name": "select_seats",
+      "value": "选择座位"
+    },
+    {
+      "name": "order_confirm",
+      "value": "订单确认"
+    },
+    {
+      "name": "payment",
+      "value": "支付"
+    },
+    {
+      "name": "my_orders",
+      "value": "我的订单"
+    },
+    {
+      "name": "buy_now",
+      "value": "立即购票"
+    },
+    {
+      "name": "coming_soon",
+      "value": "即将开售"
+    },
+    {
+      "name": "sold_out",
+      "value": "已售罄"
+    },
+    {
+      "name": "available_seats",
+      "value": "余票"
+    },
+    {
+      "name": "from_price",
+      "value": "起"
+    },
+    {
+      "name": "selected_seats",
+      "value": "已选座位"
+    },
+    {
+      "name": "clear_all",
+      "value": "清空"
+    },
+    {
+      "name": "total_amount",
+      "value": "合计"
+    },
+    {
+      "name": "confirm_order",
+      "value": "确认购票"
+    },
+    {
+      "name": "contact_info",
+      "value": "取票人信息"
+    },
+    {
+      "name": "name",
+      "value": "姓名"
+    },
+    {
+      "name": "phone",
+      "value": "手机号"
+    },
+    {
+      "name": "submit_order",
+      "value": "提交订单"
+    },
+    {
+      "name": "pay_amount",
+      "value": "支付金额"
+    },
+    {
+      "name": "select_payment",
+      "value": "选择支付方式"
+    },
+    {
+      "name": "alipay",
+      "value": "支付宝"
+    },
+    {
+      "name": "wechat_pay",
+      "value": "微信支付"
+    },
+    {
+      "name": "bank_card",
+      "value": "银行卡"
+    },
+    {
+      "name": "confirm_pay",
+      "value": "确认支付"
+    },
+    {
+      "name": "order_success",
+      "value": "支付成功"
+    },
+    {
+      "name": "order_cancel",
+      "value": "取消订单"
+    },
+    {
+      "name": "order_detail",
+      "value": "订单详情"
+    },
+    {
+      "name": "pending_payment",
+      "value": "待支付"
+    },
+    {
+      "name": "paid",
+      "value": "已支付"
+    },
+    {
+      "name": "cancelled",
+      "value": "已取消"
+    },
+    {
+      "name": "refunded",
+      "value": "已退款"
+    },
+    {
+      "name": "used",
+      "value": "已使用"
+    },
+    {
+      "name": "no_orders",
+      "value": "暂无订单"
+    },
+    {
+      "name": "go_buy",
+      "value": "去购票"
+    },
+    {
+      "name": "customer_service",
+      "value": "客服中心"
+    },
+    {
+      "name": "about_us",
+      "value": "关于我们"
+    },
+    {
+      "name": "permission_denied_title",
+      "value": "权限不足"
+    },
+    {
+      "name": "permission_denied_msg",
+      "value": "您没有该操作的权限，请联系管理员"
+    },
+    {
+      "name": "load_error_title",
+      "value": "加载失败"
+    },
+    {
+      "name": "load_error_msg",
+      "value": "数据加载失败，请检查网络后重试"
+    },
+    {
+      "name": "retry",
+      "value": "重新加载"
+    },
+    {
+      "name": "back_home",
+      "value": "返回首页"
+    },
+    {
+      "name": "empty_title",
+      "value": "暂无数据"
+    },
+    {
+      "name": "empty_msg",
+      "value": "暂无相关数据"
+    },
+    {
+      "name": "add_data",
+      "value": "新增数据"
+    },
+    {
+      "name": "return_text",
+      "value": "返回"
+    },
+    {
+      "name": "ticket_admin",
+      "value": "票务管理员"
+    },
+    {
+      "name": "operator_admin",
+      "value": "运营管理员"
+    }
+  ]
+}

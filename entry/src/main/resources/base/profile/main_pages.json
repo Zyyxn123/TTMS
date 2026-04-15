@@ -1,0 +1,32 @@
+{
+  "src": [
+    "pages/LoginPage",
+    "pages/AdminHomePage",
+    "pages/HomePage",
+    "pages/ShowDetailPage",
+    "pages/SeatSelectionPage",
+    "pages/OrderConfirmPage",
+    "pages/PaymentPage",
+    "pages/OrdersPage",
+    "pages/ProfilePage",
+    "pages/ticket/TicketListPage",
+    "pages/ticket/TicketAddPage",
+    "pages/MainTabPage",
+    "pages/ticket/TicketDetailPage",
+    "pages/ticket/TicketOutPage",
+    "pages/ticket/TicketRefundPage",
+    "pages/ticket/TicketReschedulePage",
+    "pages/ticket/TicketExceptionPage",
+    "pages/inventory/InventoryListPage",
+    "pages/inventory/InventoryAdjustPage",
+    "pages/inventory/InventoryWarningPage",
+    "pages/stats/StatsHomePage",
+    "pages/settings/SettingsPage",
+    "pages/profile/ProfileEditPage",
+    "pages/profile/OperationLogPage",
+    "pages/profile/PasswordChangePage",
+    "pages/common/PermissionDeniedPage",
+    "pages/common/LoadErrorPage",
+    "pages/common/EmptyDataPage"
+  ]
+}
