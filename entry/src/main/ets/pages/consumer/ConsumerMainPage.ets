@@ -1,4 +1,5 @@
 import router from '@ohos.router';
+import promptAction from '@ohos.promptAction';
 import { dataService } from '../../model/DataService';
 import { Show } from '../../model/DataModel';
 import { consumerUserService } from '../../model/ConsumerUserService';
@@ -127,6 +128,13 @@ export struct ConsumerMainPage {
         }
 
         Blank()
+
+        Text('🔍')
+          .fontSize(22)
+          .margin({ right: 12 })
+          .onClick(() => {
+            router.pushUrl({ url: 'pages/consumer/ConsumerSearchPage' });
+          })
 
         Text('👤')
           .fontSize(24)
@@ -335,6 +343,9 @@ export struct ConsumerMainPage {
           .padding({ left: 12, right: 12, top: 6, bottom: 6 })
           .backgroundColor('#FFF3E0')
           .borderRadius(16)
+          .onClick(() => {
+            router.pushUrl({ url: 'pages/consumer/ConsumerFilterPage' });
+          })
       }
       .width('100%')
       .height(56)
@@ -434,17 +445,45 @@ export struct ConsumerMainPage {
         Column() {
           // 菜单列表
           Column() {
-            this.ProfileMenuItem('🎫', '我的票券', this.isLoggedIn ? '查看已购票券' : '登录后查看')
+            this.ProfileMenuItem('🎫', '我的票券', this.isLoggedIn ? '查看已购票券' : '登录后查看', () => {
+              if (this.isLoggedIn) {
+                this.currentTab = 'orders';
+              } else {
+                router.pushUrl({ url: 'pages/consumer/ConsumerLoginPage' });
+              }
+            })
             Divider().color('#F5F5F5').margin({ left: 56 })
-            this.ProfileMenuItem('❤️', '我的收藏', '收藏的演出')
+            this.ProfileMenuItem('❤️', '我的收藏', '收藏的演出', () => {
+              promptAction.showToast({ message: '收藏功能开发中', duration: 2000 });
+            })
             Divider().color('#F5F5F5').margin({ left: 56 })
-            this.ProfileMenuItem('📍', '收货地址', '管理收货地址')
+            this.ProfileMenuItem('📍', '收货地址', '管理收货地址', () => {
+              if (this.isLoggedIn) {
+                router.pushUrl({ url: 'pages/consumer/ConsumerAddressPage' });
+              } else {
+                router.pushUrl({ url: 'pages/consumer/ConsumerLoginPage' });
+              }
+            })
             Divider().color('#F5F5F5').margin({ left: 56 })
-            this.ProfileMenuItem('💳', '支付方式', '管理支付方式')
+            this.ProfileMenuItem('💳', '支付方式', '管理支付方式', () => {
+              if (this.isLoggedIn) {
+                router.pushUrl({ url: 'pages/consumer/ConsumerPaymentMethodsPage' });
+              } else {
+                router.pushUrl({ url: 'pages/consumer/ConsumerLoginPage' });
+              }
+            })
             Divider().color('#F5F5F5').margin({ left: 56 })
-            this.ProfileMenuItem('🔔', '消息通知', '查看系统消息')
+            this.ProfileMenuItem('🔔', '消息通知', '查看系统消息', () => {
+              if (this.isLoggedIn) {
+                router.pushUrl({ url: 'pages/consumer/ConsumerMessagesPage' });
+              } else {
+                router.pushUrl({ url: 'pages/consumer/ConsumerLoginPage' });
+              }
+            })
             Divider().color('#F5F5F5').margin({ left: 56 })
-            this.ProfileMenuItem('❓', '帮助中心', '常见问题解答')
+            this.ProfileMenuItem('❓', '帮助中心', '常见问题解答', () => {
+              promptAction.showToast({ message: '帮助中心开发中', duration: 2000 });
+            })
           }
           .width('100%')
           .backgroundColor('#FFFFFF')
@@ -488,7 +527,7 @@ export struct ConsumerMainPage {
   }
 
   @Builder
-  ProfileMenuItem(icon: string, title: string, subtitle: string) {
+  ProfileMenuItem(icon: string, title: string, subtitle: string, onClick?: () => void) {
     Row() {
       Text(icon)
         .fontSize(20)
@@ -510,6 +549,11 @@ export struct ConsumerMainPage {
     }
     .width('100%')
     .padding({ left: 16, right: 16, top: 14, bottom: 14 })
+    .onClick(() => {
+      if (onClick) {
+        onClick();
+      }
+    })
   }
 }
 

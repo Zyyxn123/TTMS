@@ -37,6 +37,12 @@
     "pages/consumer/ConsumerOrderConfirmPage",
     "pages/consumer/ConsumerPaymentPage",
     "pages/consumer/ConsumerPaySuccessPage",
-    "pages/consumer/ConsumerOrdersPage"
+    "pages/consumer/ConsumerOrdersPage",
+    "pages/consumer/ConsumerSearchPage",
+    "pages/consumer/ConsumerFilterPage",
+    "pages/consumer/ConsumerProfileEditPage",
+    "pages/consumer/ConsumerAddressPage",
+    "pages/consumer/ConsumerPaymentMethodsPage",
+    "pages/consumer/ConsumerMessagesPage"
   ]
 }
