@@ -261,7 +261,7 @@ export struct LoginPage {
                 .fontColor('#666666')
                 .margin({ left: 8 })
               Blank()
-              Text('忘记密码')
+              Text('联系管理员')
                 .fontSize(14)
                 .fontColor('#1E88E5')
                 .onClick(() => {
@@ -308,21 +308,13 @@ export struct LoginPage {
 
           // ===== 底部账号提示 =====
           Column({ space: 8 }) {
-            Text('测试账号')
+            Text('管理员账号由系统统一分配')
               .fontSize(12)
-              .fontColor('#CCCCCC')
+              .fontColor('#999999')
               .margin({ bottom: 4 })
-            Row({ space: 16 }) {
-              Text('admin / admin123')
-                .fontSize(12)
-                .fontColor('#9E9E9E')
-              Text('|')
-                .fontSize(12)
-                .fontColor('#EEEEEE')
-              Text('ticket / ticket123')
-                .fontSize(12)
-                .fontColor('#9E9E9E')
-            }
+            Text('如需开通账号请联系管理员')
+              .fontSize(12)
+              .fontColor('#BBBBBB')
           }
           .width('100%')
           .padding({ bottom: 40 })

@@ -1,5 +1,7 @@
 import router from '@ohos.router';
 import promptAction from '@ohos.promptAction';
+import { consumerUserService } from '../../model/ConsumerUserService';
+import { ConsumerUser } from '../../model/DataModel';
 
 /**
  * 消费端登录页
@@ -16,10 +18,19 @@ export struct ConsumerLoginPage {
   @State phoneError: string = '';
   @State passwordError: string = '';
   @State countdown: number = 0;
-  @State isPhoneFocused: boolean = false;
-  @State isPasswordFocused: boolean = false;
 
   private countdownTimer: number = -1;
+
+  aboutToAppear(): void {
+    // 检查是否记住密码
+    this.rememberPassword = consumerUserService.getIsRemembered();
+    if (this.rememberPassword) {
+      const user = consumerUserService.getCurrentUser();
+      if (user) {
+        this.phone = user.phone;
+      }
+    }
+  }
 
   aboutToDisappear(): void {
     if (this.countdownTimer !== -1) {
@@ -49,6 +60,7 @@ export struct ConsumerLoginPage {
       return;
     }
     this.countdown = 60;
+    consumerUserService.sendVerifyCode(this.phone);
     promptAction.showToast({ message: '验证码已发送', duration: 2000 });
     this.countdownTimer = setInterval(() => {
       this.countdown--;
@@ -74,10 +86,29 @@ export struct ConsumerLoginPage {
     }
 
     this.isLoading = true;
+
     setTimeout(() => {
+      let user: ConsumerUser | null = null;
+
+      if (this.loginType === 'password') {
+        user = consumerUserService.login(this.phone.trim(), this.password.trim());
+      } else {
+        user = consumerUserService.loginWithCode(this.phone.trim(), this.verifyCode.trim());
+      }
+
       this.isLoading = false;
-      promptAction.showToast({ message: '登录成功，欢迎来到TTMS！', duration: 2000 });
-      router.replaceUrl({ url: 'pages/consumer/ConsumerMainPage' });
+
+      if (user) {
+        consumerUserService.setRemembered(this.rememberPassword);
+        promptAction.showToast({ message: `欢迎，${user.name}！`, duration: 2000 });
+        router.replaceUrl({ url: 'pages/consumer/ConsumerMainPage' });
+      } else {
+        if (this.loginType === 'password') {
+          this.passwordError = '手机号或密码错误';
+        } else {
+          this.passwordError = '验证码错误';
+        }
+      }
     }, 800);
   }
 
@@ -166,8 +197,6 @@ export struct ConsumerLoginPage {
                 .layoutWeight(1)
                 .height(44)
                 .type(InputType.PhoneNumber)
-                .onFocus(() => { this.isPhoneFocused = true; })
-                .onBlur(() => { this.isPhoneFocused = false; })
                 .onChange((value: string) => {
                   this.phone = value;
                   if (this.phoneError !== '') this.phoneError = '';
@@ -190,11 +219,6 @@ export struct ConsumerLoginPage {
             .backgroundColor('#FAFAFA')
             .borderRadius(10)
             .padding({ left: 14, right: 14 })
-            .border({
-              width: 1,
-              color: this.isPhoneFocused ? '#FF9800' : (this.phoneError !== '' ? '#F44336' : '#EEEEEE'),
-              radius: 10
-            })
 
             if (this.phoneError !== '') {
               Text(this.phoneError)
@@ -224,8 +248,6 @@ export struct ConsumerLoginPage {
                 .layoutWeight(1)
                 .height(44)
                 .type(this.loginType === 'password' ? InputType.Password : InputType.Number)
-                .onFocus(() => { this.isPasswordFocused = true; })
-                .onBlur(() => { this.isPasswordFocused = false; })
                 .onChange((value: string) => {
                   if (this.loginType === 'password') {
                     this.password = value;
@@ -244,11 +266,6 @@ export struct ConsumerLoginPage {
             .backgroundColor('#FAFAFA')
             .borderRadius(10)
             .padding({ left: 14, right: 14 })
-            .border({
-              width: 1,
-              color: this.isPasswordFocused ? '#FF9800' : (this.passwordError !== '' ? '#F44336' : '#EEEEEE'),
-              radius: 10
-            })
 
             if (this.passwordError !== '') {
               Text(this.passwordError)

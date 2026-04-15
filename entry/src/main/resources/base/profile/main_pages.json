@@ -1,5 +1,6 @@
 {
   "src": [
+    "pages/Index",
     "pages/LoginPage",
     "pages/AdminHomePage",
     "pages/HomePage",
@@ -27,6 +28,15 @@
     "pages/profile/PasswordChangePage",
     "pages/common/PermissionDeniedPage",
     "pages/common/LoadErrorPage",
-    "pages/common/EmptyDataPage"
+    "pages/common/EmptyDataPage",
+    "pages/consumer/ConsumerLoginPage",
+    "pages/consumer/ConsumerRegisterPage",
+    "pages/consumer/ConsumerMainPage",
+    "pages/consumer/ConsumerShowDetailPage",
+    "pages/consumer/ConsumerSeatSelectPage",
+    "pages/consumer/ConsumerOrderConfirmPage",
+    "pages/consumer/ConsumerPaymentPage",
+    "pages/consumer/ConsumerPaySuccessPage",
+    "pages/consumer/ConsumerOrdersPage"
   ]
 }

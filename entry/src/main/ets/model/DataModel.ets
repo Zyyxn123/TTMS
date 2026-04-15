@@ -108,6 +108,17 @@ export enum MemberLevel {
   PLATINUM = 'platinum'
 }
 
+// 消费者用户模型
+export interface ConsumerUser {
+  id: string;
+  phone: string;
+  password: string;
+  name: string;
+  avatar?: ResourceStr;
+  createTime: string;
+  lastLoginTime?: string;
+}
+
 // ===================== 管理员端数据模型 =====================
 
 // 管理员角色
